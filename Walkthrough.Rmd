@@ -1,0 +1,285 @@
+---
+title: "Intro to R"
+author: "Mike Spencer"
+date: "2nd July 2019"
+output: 
+  html_document: 
+    highlight: tango
+    theme: paper
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Intro
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+We're using <https://rstudio.cloud/> to host the workshop. The conditions of use mean we can only use this for educational purposes. It's a great resource for teaching, but is underpowered for most analysis. The big advantage is you can access RStudio through a web browser without the need to install anything!
+
+The dataset you'll be working with today is the developer survey from Stackoverflow.
+You can download it from <https://insights.stackoverflow.com/survey>.
+
+
+## Help!
+
+... and further resources
+
+* `?Function`
+* <https://www.tidyverse.org/>
+* <http://swcarpentry.github.io/r-novice-inflammation>
+* <https://datacarpentry.org/R-ecology-lesson/> or <https://datacarpentry.org/r-socialsci/>
+* <https://www.rstudio.com/resources/cheatsheets/>
+* <https://www.coursera.org/learn/r-programming?>
+* <https://r4ds.had.co.nz/>
+* <http://dx.doi.org/10.18637/jss.v059.i10> 131256 downloads!
+
+
+## Packages
+
+```{r packages}
+library(tidyverse)
+```
+
+
+## Language tips
+
+* functions end in ()
+* `?` before a function name for help
+* objects are plain text
+* %>% sends output to next function
+* Wrap strings in "" or ''
+* Separate arguments in function with a `,`
+* Use formatting to make code easier to read
+
+
+## Data
+
+### Read
+
+```{r data}
+df = read_csv("~/Downloads/developer_survey_2019/survey_results_public.csv")
+schema = read_csv("~/Downloads/developer_survey_2019/survey_results_schema.csv")
+
+?read_csv
+```
+
+
+### Explore
+
+* See the `Environment` pane.
+* What did R return after each dataset was read?
+
+```{r explore}
+schema
+glimpse(df)
+summary(df)
+View(df)
+colnames(df)
+```
+
+
+## Building blocks
+
+
+### Select columns
+
+```{r select}
+df %>% 
+   select(Employment, Country)
+
+df %>% 
+   select(-Respondent)
+```
+
+
+### Filter rows
+
+```{r filter}
+df %>% 
+   filter(Employment == "Not employed, but looking for work")
+
+df %>% 
+   filter(Employment != "Not employed, but looking for work")
+```
+
+
+### Count observations
+
+```{r count}
+df %>% 
+   count(Employment)
+
+df %>% 
+   count(Employment, Country)
+
+df %>% 
+   drop_na() %>% 
+   count(Employment, Country)
+```
+
+
+### Sort data
+
+```{r sort}
+df %>% 
+   count(Employment) %>% 
+   arrange(desc(n))
+```
+
+
+### Add/change variables
+
+```{r mutate}
+df %>% 
+   select(WorkWeekHrs) %>% 
+   mutate(work_week = WorkWeekHrs / (24 * 7))
+```
+
+
+### Summarise
+
+Similar to mutate, but collapses results
+
+```{r summarise}
+df %>% 
+   group_by(Country) %>% 
+   summarise(hrs = mean(WorkWeekHrs))
+
+df %>% 
+   drop_na(Country, WorkWeekHrs) %>% 
+   group_by(Country) %>% 
+   summarise(hrs = mean(WorkWeekHrs))
+
+df %>% 
+   drop_na(Country, WorkWeekHrs) %>% 
+   group_by(Country) %>% 
+   summarise(hrs = mean(WorkWeekHrs)) %>% 
+   arrange(desc(hrs))
+
+df %>% 
+   drop_na(Country, WorkWeekHrs) %>% 
+   group_by(Country) %>% 
+   summarise(hrs = mean(WorkWeekHrs),
+             n = n()) %>% 
+   arrange(desc(hrs))
+
+df %>% 
+   drop_na(Country, WorkWeekHrs) %>% 
+   group_by(Country) %>% 
+   summarise(hrs = mean(WorkWeekHrs),
+             n = n()) %>% 
+   arrange(desc(hrs)) %>% 
+   filter(n > 100)
+```
+
+Could do that fancy Bayes trick here...
+<http://store.varianceexplained.org/>
+
+
+## Plotting
+
+Reiterate the tidyverse pages: <https://ggplot2.tidyverse.org/reference/>
+
+```{r ggplot}
+ggplot(df, aes(Country)) +
+   geom_bar()
+
+df %>% 
+   mutate(Country = fct_lump(Country, 20)) %>% 
+   ggplot(aes(Country)) +
+   geom_bar()
+
+df %>% 
+   drop_na(Country) %>% 
+   mutate(Country = fct_lump(Country, 20)) %>% 
+   ggplot(aes(Country)) +
+   geom_bar() +
+   coord_flip()
+
+df %>% 
+   drop_na(Country) %>% 
+   mutate(Country = fct_lump(Country, 20)) %>% 
+   ggplot(aes(Country)) +
+   geom_bar() +
+   coord_flip() +
+   labs(title = "Survey respondents",
+        x = "",
+        y = "Respondents")
+
+df %>% 
+   drop_na(Country) %>% 
+   mutate(Country = fct_lump(Country, 20),
+          Country = fct_infreq(Country)) %>% 
+   ggplot(aes(Country)) +
+   geom_bar() +
+   coord_flip() +
+   labs(title = "Survey respondents",
+        x = "",
+        y = "Respondents")
+
+df %>% 
+   drop_na(Country) %>% 
+   mutate(Country = fct_lump(Country, 20),
+          Country = fct_infreq(Country)) %>% 
+   ggplot(aes(Country)) +
+   geom_bar() +
+   coord_flip() +
+   labs(title = "Survey respondents country",
+        x = "",
+        y = "Respondents") +
+   theme_light()
+```
+
+
+## Functions
+
+```{r function}
+plot_function = function(i){
+   df %>% 
+      rename_(temp = i) %>% 
+      drop_na(temp) %>% 
+      ggplot(aes(temp)) +
+      geom_bar() +
+      coord_flip() +
+      labs(title = schema %>% 
+           filter(Column == i) %>% 
+           select(QuestionText) %>% 
+           str_wrap(width = 60) ,
+           x = "",
+           y = "Respondents") +
+      theme_light()
+}
+
+plot_function("WorkLoc")
+```
+
+
+## Question
+
+Here we can put it all together, with a little more magic to establish a question.
+
+```{r question, fig.width=10, fig.height=8}
+df %>% 
+   filter(str_detect(LanguageWorkedWith, ";R;")) %>% 
+   mutate(EdLevel = replace_na(EdLevel, "Unanswered"),
+          EdLevel = str_wrap(EdLevel, width=60),
+          EdLevel = fct_infreq(EdLevel)) %>% 
+   ggplot(aes(EdLevel)) +
+   geom_bar() +
+   coord_flip() +
+   labs(title = schema %>% 
+           filter(Column == "EdLevel") %>% 
+           select(QuestionText) %>% 
+           str_wrap(width = 60),
+        subtitle = "For respondents who work with R",
+        x = "",
+        y = "Respondents") +
+   facet_wrap(~str_wrap(MainBranch, width=40))
+```
+
+* Popular with hobby students
+* Popular with researchers - probably!
+
+**Q:** Can you explore the last statement?
