@@ -1,0 +1,13 @@
+---
+title: "http://bit.ly/intro_to_R"
+author: "Mike Spencer | Alyson Barratt | Alasdair Sykes"
+date: "2nd July 2019"
+output:
+   ioslides_presentation:
+     logo: sruc.jpeg
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
