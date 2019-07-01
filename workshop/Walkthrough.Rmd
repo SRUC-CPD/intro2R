@@ -3,9 +3,8 @@ title: "Intro to R"
 author: "Mike Spencer"
 date: "2nd July 2019"
 output: 
-  html_document: 
-    highlight: tango
-    theme: paper
+  github_document: 
+    toc: true
 ---
 
 ```{r setup, include=FALSE}
@@ -14,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Intro
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+*This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.*
 
 We're using <https://rstudio.cloud/> to host the workshop. The conditions of use mean we can only use this for educational purposes. It's a great resource for teaching, but is underpowered for most analysis. The big advantage is you can access RStudio through a web browser without the need to install anything!
 
@@ -34,13 +33,7 @@ You can download it from <https://insights.stackoverflow.com/survey>.
 * <https://www.coursera.org/learn/r-programming?>
 * <https://r4ds.had.co.nz/>
 * <http://dx.doi.org/10.18637/jss.v059.i10> 131256 downloads!
-
-
-## Packages
-
-```{r packages}
-library(tidyverse)
-```
+* <https://bitbucket.org/sruclees/help/wiki/Home> SRUC REES data wiki
 
 
 ## Language tips
@@ -54,13 +47,20 @@ library(tidyverse)
 * Use formatting to make code easier to read
 
 
+## Packages
+
+```{r packages}
+library(tidyverse)
+```
+
+
 ## Data
 
 ### Read
 
 ```{r data}
-df = read_csv("~/Downloads/developer_survey_2019/survey_results_public.csv")
-schema = read_csv("~/Downloads/developer_survey_2019/survey_results_schema.csv")
+df = read_csv("../data/survey_results_public.csv")
+schema = read_csv("../data/survey_results_schema.csv")
 
 ?read_csv
 ```
@@ -81,7 +81,6 @@ colnames(df)
 
 
 ## Building blocks
-
 
 ### Select columns
 
