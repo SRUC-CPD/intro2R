@@ -5,9 +5,9 @@ Mike Spencer
 
 ## Intro
 
-This is an R Markdown document. Markdown is a simple formatting syntax
+*This is an R Markdown document. Markdown is a simple formatting syntax
 for authoring HTML, PDF, and MS Word documents. For more details on
-using R Markdown see <http://rmarkdown.rstudio.com>.
+using R Markdown see <http://rmarkdown.rstudio.com>.*
 
 We’re using <https://rstudio.cloud/> to host the workshop. The
 conditions of use mean we can only use this for educational purposes.
@@ -24,15 +24,20 @@ Stackoverflow. You can download it from
 … and further resources
 
   - `?Function`
-  - <https://www.tidyverse.org/>
+  - <http://edinbr.org/> your local user group
+  - <https://ourcodingclub.github.io/> coding club
+  - <https://www.tidyverse.org/> help guides
   - <http://swcarpentry.github.io/r-novice-inflammation>
   - <https://datacarpentry.org/R-ecology-lesson/> or
     <https://datacarpentry.org/r-socialsci/>
   - <https://www.rstudio.com/resources/cheatsheets/>
   - <https://www.coursera.org/learn/r-programming?>
   - <https://r4ds.had.co.nz/>
-  - <http://dx.doi.org/10.18637/jss.v059.i10> 131256 downloads\!
+  - <http://dx.doi.org/10.18637/jss.v059.i10> 131256 downloads for tidy
+    data\!
   - <https://bitbucket.org/sruclees/help/wiki/Home> SRUC REES data wiki
+  - SRUC R user group:
+    <https://teams.microsoft.com/l/team/19%3a4492dd8b6fe24989a599ac8889dba374%40thread.skype/conversations?groupId=720f4eb2-1f80-4943-afa7-89f24b8b97c6&tenantId=c8542d98-e64c-446e-b8d5-0c98ffe56526>
 
 ## Language tips
 
@@ -72,7 +77,7 @@ library(tidyverse)
 ### Read
 
 ``` r
-df = read_csv("../data/survey_results_public.csv")
+df = read_csv("../data/survey_results_public_UK.csv")
 ```
 
     ## Parsed with column specification:
@@ -132,90 +137,90 @@ schema
 glimpse(df)
 ```
 
-    ## Observations: 88,883
+    ## Observations: 5,737
     ## Variables: 85
-    ## $ Respondent             <dbl> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13…
+    ## $ Respondent             <dbl> 1, 16, 76, 80, 82, 94, 128, 164, 182, 188…
     ## $ MainBranch             <chr> "I am a student who is learning to code",…
-    ## $ Hobbyist               <chr> "Yes", "No", "Yes", "No", "Yes", "Yes", "…
-    ## $ OpenSourcer            <chr> "Never", "Less than once per year", "Neve…
+    ## $ Hobbyist               <chr> "Yes", "Yes", "No", "Yes", "Yes", "Yes", …
+    ## $ OpenSourcer            <chr> "Never", "Never", "Never", "Less than onc…
     ## $ OpenSource             <chr> "The quality of OSS and closed source sof…
     ## $ Employment             <chr> "Not employed, and not looking for work",…
-    ## $ Country                <chr> "United Kingdom", "Bosnia and Herzegovina…
-    ## $ Student                <chr> "No", "Yes, full-time", "No", "No", "No",…
-    ## $ EdLevel                <chr> "Primary/elementary school", "Secondary s…
-    ## $ UndergradMajor         <chr> NA, NA, "Web development or web design", …
+    ## $ Country                <chr> "United Kingdom", "United Kingdom", "Unit…
+    ## $ Student                <chr> "No", "No", "No", "No", "No", "No", "No",…
+    ## $ EdLevel                <chr> "Primary/elementary school", "Master’s de…
+    ## $ UndergradMajor         <chr> NA, NA, "Computer science, computer engin…
     ## $ EduOther               <chr> "Taught yourself a new language, framewor…
-    ## $ OrgSize                <chr> NA, NA, "100 to 499 employees", "100 to 4…
-    ## $ DevType                <chr> NA, "Developer, desktop or enterprise app…
-    ## $ YearsCode              <chr> "4", NA, "3", "3", "16", "13", "6", "8", …
-    ## $ Age1stCode             <chr> "10", "17", "22", "16", "14", "15", "17",…
-    ## $ YearsCodePro           <chr> NA, NA, "1", "Less than 1 year", "9", "3"…
-    ## $ CareerSat              <chr> NA, NA, "Slightly satisfied", "Very satis…
-    ## $ JobSat                 <chr> NA, NA, "Slightly satisfied", "Slightly s…
-    ## $ MgrIdiot               <chr> NA, NA, "Not at all confident", "Very con…
-    ## $ MgrMoney               <chr> NA, NA, "Not sure", "No", "Yes", "No", NA…
-    ## $ MgrWant                <chr> NA, NA, "Not sure", "Not sure", "No", "Ye…
-    ## $ JobSeek                <chr> NA, "I am actively looking for a job", "I…
-    ## $ LastHireDate           <chr> NA, "I've never had a job", "1-2 years ag…
-    ## $ LastInt                <chr> NA, NA, "Interview with people in peer ro…
-    ## $ FizzBuzz               <chr> NA, NA, "No", "No", "No", "No", "No", NA,…
-    ## $ JobFactors             <chr> NA, "Financial performance or funding sta…
-    ## $ ResumeUpdate           <chr> NA, "Something else changed (education, a…
-    ## $ CurrencySymbol         <chr> NA, NA, "THB", "USD", "UAH", "CAD", "USD"…
-    ## $ CurrencyDesc           <chr> NA, NA, "Thai baht", "United States dolla…
-    ## $ CompTotal              <dbl> NA, NA, 23000, 61000, NA, 40000, NA, NA, …
-    ## $ CompFreq               <chr> NA, NA, "Monthly", "Yearly", NA, "Monthly…
-    ## $ ConvertedComp          <dbl> NA, NA, 8820, 61000, NA, 366420, NA, NA, …
-    ## $ WorkWeekHrs            <dbl> NA, NA, 40, 80, 55, 15, 32, NA, 32, 70, N…
-    ## $ WorkPlan               <chr> NA, NA, "There's no schedule or spec; I w…
-    ## $ WorkChallenge          <chr> NA, NA, "Distracting work environment;Ina…
-    ## $ WorkRemote             <chr> NA, NA, "Less than once per month / Never…
-    ## $ WorkLoc                <chr> NA, NA, "Home", "Home", "Office", "Home",…
-    ## $ ImpSyn                 <chr> NA, NA, "Average", "A little below averag…
-    ## $ CodeRev                <chr> NA, NA, "No", "No", "Yes, because I see v…
-    ## $ CodeRevHrs             <dbl> NA, NA, NA, NA, NA, NA, 6.0, NA, 12.0, 4.…
-    ## $ UnitTests              <chr> NA, NA, "No, but I think we should", "No,…
-    ## $ PurchaseHow            <chr> NA, NA, "Not sure", "Developers typically…
-    ## $ PurchaseWhat           <chr> NA, NA, "I have little or no influence", …
-    ## $ LanguageWorkedWith     <chr> "HTML/CSS;Java;JavaScript;Python", "C++;H…
+    ## $ OrgSize                <chr> NA, "100 to 499 employees", "20 to 99 emp…
+    ## $ DevType                <chr> NA, "Developer, full-stack", "Developer, …
+    ## $ YearsCode              <chr> "4", "10", "9", "1", "35", "7", "14", "23…
+    ## $ Age1stCode             <chr> "10", "17", "23", "22", "14", "16", "14",…
+    ## $ YearsCodePro           <chr> NA, "3", "5", "1", "27", "5", "10", "20",…
+    ## $ CareerSat              <chr> NA, "Very satisfied", "Slightly satisfied…
+    ## $ JobSat                 <chr> NA, "Slightly satisfied", "Very satisfied…
+    ## $ MgrIdiot               <chr> NA, "Somewhat confident", "Very confident…
+    ## $ MgrMoney               <chr> NA, "No", "Yes", "No", "Yes", "Yes", "No"…
+    ## $ MgrWant                <chr> NA, "No", "Yes", "Yes", "No", "I am alrea…
+    ## $ JobSeek                <chr> NA, "I’m not actively looking, but I am o…
+    ## $ LastHireDate           <chr> NA, "3-4 years ago", "Less than a year ag…
+    ## $ LastInt                <chr> NA, "Interview with people in senior / ma…
+    ## $ FizzBuzz               <chr> NA, "Yes", "No", "No", "No", "Yes", "No",…
+    ## $ JobFactors             <chr> NA, "Languages, frameworks, and other tec…
+    ## $ ResumeUpdate           <chr> NA, "I heard about a job opportunity (fro…
+    ## $ CurrencySymbol         <chr> NA, "GBP", "GBP", "GBP", "GBP", "GBP", "G…
+    ## $ CurrencyDesc           <chr> NA, "Pound sterling", "Pound sterling", "…
+    ## $ CompTotal              <dbl> NA, 29000, 30000, NA, 110000, 33000, 1060…
+    ## $ CompFreq               <chr> NA, "Monthly", "Yearly", "Yearly", "Yearl…
+    ## $ ConvertedComp          <dbl> NA, 455352, 39254, NA, 143932, 43180, 100…
+    ## $ WorkWeekHrs            <dbl> NA, 40.0, 40.0, 50.0, 35.0, 44.0, 50.0, 3…
+    ## $ WorkPlan               <chr> NA, "There is a schedule and/or spec (mad…
+    ## $ WorkChallenge          <chr> NA, "Being tasked with non-development wo…
+    ## $ WorkRemote             <chr> NA, "A few days each month", "Less than o…
+    ## $ WorkLoc                <chr> NA, "Home", "Home", "Office", "Home", "Ho…
+    ## $ ImpSyn                 <chr> NA, "Average", "Average", "A little above…
+    ## $ CodeRev                <chr> NA, "No", "Yes, because I see value in co…
+    ## $ CodeRevHrs             <dbl> NA, NA, 2, 3, 3, 2, 4, 2, NA, 1, NA, NA, …
+    ## $ UnitTests              <chr> NA, "No, but I think we should", "Yes, it…
+    ## $ PurchaseHow            <chr> NA, "Developers and management have nearl…
+    ## $ PurchaseWhat           <chr> NA, "I have some influence", "I have some…
+    ## $ LanguageWorkedWith     <chr> "HTML/CSS;Java;JavaScript;Python", "Bash/…
     ## $ LanguageDesireNextYear <chr> "C;C++;C#;Go;HTML/CSS;Java;JavaScript;Pyt…
-    ## $ DatabaseWorkedWith     <chr> "SQLite", NA, "PostgreSQL", "MySQL;SQLite…
-    ## $ DatabaseDesireNextYear <chr> "MySQL", "MySQL", "PostgreSQL", "MySQL;SQ…
-    ## $ PlatformWorkedWith     <chr> "MacOS;Windows", "Windows", NA, "Linux;Wi…
-    ## $ PlatformDesireNextYear <chr> "Android;Arduino;Windows", "Windows", NA,…
-    ## $ WebFrameWorkedWith     <chr> "Django;Flask", "Django", NA, NA, "Django…
-    ## $ WebFrameDesireNextYear <chr> "Flask;jQuery", "Django", "Other(s):", NA…
-    ## $ MiscTechWorkedWith     <chr> "Node.js", NA, NA, ".NET", "Cordova;Node.…
-    ## $ MiscTechDesireNextYear <chr> "Node.js", NA, NA, ".NET", "Apache Spark;…
-    ## $ DevEnviron             <chr> "IntelliJ;Notepad++;PyCharm", "Atom;PyCha…
-    ## $ OpSys                  <chr> "Windows", "Windows", "Linux-based", "Win…
+    ## $ DatabaseWorkedWith     <chr> "SQLite", "MongoDB;Microsoft SQL Server;M…
+    ## $ DatabaseDesireNextYear <chr> "MySQL", "Elasticsearch;MongoDB;Microsoft…
+    ## $ PlatformWorkedWith     <chr> "MacOS;Windows", NA, "AWS", "Docker;Kuber…
+    ## $ PlatformDesireNextYear <chr> "Android;Arduino;Windows", "AWS;Google Cl…
+    ## $ WebFrameWorkedWith     <chr> "Django;Flask", "Angular/Angular.js;ASP.N…
+    ## $ WebFrameDesireNextYear <chr> "Flask;jQuery", "Angular/Angular.js;ASP.N…
+    ## $ MiscTechWorkedWith     <chr> "Node.js", ".NET;.NET Core;Node.js", NA, …
+    ## $ MiscTechDesireNextYear <chr> "Node.js", ".NET Core;Node.js;React Nativ…
+    ## $ DevEnviron             <chr> "IntelliJ;Notepad++;PyCharm", "Visual Stu…
+    ## $ OpSys                  <chr> "Windows", "Windows", "Windows", "Windows…
     ## $ Containers             <chr> "I do not use containers", "I do not use …
-    ## $ BlockchainOrg          <chr> NA, NA, NA, "Not at all", "Not at all", "…
-    ## $ BlockchainIs           <chr> NA, "Useful across many domains and could…
-    ## $ BetterLife             <chr> "Yes", "Yes", "Yes", "Yes", "Yes", "No", …
+    ## $ BlockchainOrg          <chr> NA, "Not at all", "Not at all", "Implemen…
+    ## $ BlockchainIs           <chr> NA, "A passing fad", "Useful for decentra…
+    ## $ BetterLife             <chr> "Yes", "No", "Yes", "Yes", "Yes", "Yes", …
     ## $ ITperson               <chr> "Fortunately, someone else has that title…
-    ## $ OffOn                  <chr> "Yes", "Yes", "Yes", "Yes", "Yes", "No", …
-    ## $ SocialMedia            <chr> "Twitter", "Instagram", "Reddit", "Reddit…
+    ## $ OffOn                  <chr> "Yes", "No", "Yes", "No", NA, "Yes", "Yes…
+    ## $ SocialMedia            <chr> "Twitter", "YouTube", "Facebook", "I don'…
     ## $ Extraversion           <chr> "Online", "Online", "In real life (in per…
     ## $ ScreenName             <chr> "Username", "Username", "Username", "User…
-    ## $ SOVisit1st             <chr> "2017", "2017", "2011", "2014", "I don't …
-    ## $ SOVisitFreq            <chr> "A few times per month or weekly", "Daily…
+    ## $ SOVisit1st             <chr> "2017", "2010", "2010", "2010", "2012", "…
+    ## $ SOVisitFreq            <chr> "A few times per month or weekly", "Multi…
     ## $ SOVisitTo              <chr> "Find answers to specific questions;Learn…
-    ## $ SOFindAnswer           <chr> "3-5 times per week", "3-5 times per week…
+    ## $ SOFindAnswer           <chr> "3-5 times per week", "Less than once per…
     ## $ SOTimeSaved            <chr> "Stack Overflow was much faster", "Stack …
-    ## $ SOHowMuchTime          <chr> "31-60 minutes", "11-30 minutes", NA, "31…
-    ## $ SOAccount              <chr> "No", "Yes", "Yes", "Yes", "Yes", "Yes", …
-    ## $ SOPartFreq             <chr> NA, "A few times per month or weekly", "L…
+    ## $ SOHowMuchTime          <chr> "31-60 minutes", "11-30 minutes", "0-10 m…
+    ## $ SOAccount              <chr> "No", "Yes", "Yes", "Not sure / can't rem…
+    ## $ SOPartFreq             <chr> NA, "Less than once per month or monthly"…
     ## $ SOJobs                 <chr> "No, I didn't know that Stack Overflow ha…
     ## $ EntTeams               <chr> "No, and I don't know what those are", "N…
     ## $ SOComm                 <chr> "Neutral", "Yes, somewhat", "Neutral", "N…
     ## $ WelcomeChange          <chr> "Just as welcome now as I felt last year"…
     ## $ SONewContent           <chr> "Tech articles written by other developer…
-    ## $ Age                    <dbl> 14, 19, 28, 22, 30, 28, 42, 24, 23, NA, 2…
+    ## $ Age                    <dbl> 14, 26, 32, 24, NA, 27, 30, 47, 18, 28, 5…
     ## $ Gender                 <chr> "Man", "Man", "Man", "Man", "Man", "Man",…
     ## $ Trans                  <chr> "No", "No", "No", "No", "No", "No", "No",…
     ## $ Sexuality              <chr> "Straight / Heterosexual", "Straight / He…
-    ## $ Ethnicity              <chr> NA, NA, NA, "White or of European descent…
+    ## $ Ethnicity              <chr> NA, "White or of European descent", "Whit…
     ## $ Dependents             <chr> "No", "No", "Yes", "No", "No", "No", "Yes…
     ## $ SurveyLength           <chr> "Appropriate in length", "Appropriate in …
     ## $ SurveyEase             <chr> "Neither easy nor difficult", "Neither ea…
@@ -225,15 +230,15 @@ summary(df)
 ```
 
     ##    Respondent     MainBranch          Hobbyist         OpenSourcer       
-    ##  Min.   :    1   Length:88883       Length:88883       Length:88883      
-    ##  1st Qu.:22222   Class :character   Class :character   Class :character  
-    ##  Median :44442   Mode  :character   Mode  :character   Mode  :character  
-    ##  Mean   :44442                                                           
-    ##  3rd Qu.:66662                                                           
-    ##  Max.   :88883                                                           
+    ##  Min.   :    1   Length:5737        Length:5737        Length:5737       
+    ##  1st Qu.:22413   Class :character   Class :character   Class :character  
+    ##  Median :44854   Mode  :character   Mode  :character   Mode  :character  
+    ##  Mean   :44599                                                           
+    ##  3rd Qu.:66895                                                           
+    ##  Max.   :88833                                                           
     ##                                                                          
     ##   OpenSource         Employment          Country         
-    ##  Length:88883       Length:88883       Length:88883      
+    ##  Length:5737        Length:5737        Length:5737       
     ##  Class :character   Class :character   Class :character  
     ##  Mode  :character   Mode  :character   Mode  :character  
     ##                                                          
@@ -241,7 +246,7 @@ summary(df)
     ##                                                          
     ##                                                          
     ##    Student            EdLevel          UndergradMajor    
-    ##  Length:88883       Length:88883       Length:88883      
+    ##  Length:5737        Length:5737        Length:5737       
     ##  Class :character   Class :character   Class :character  
     ##  Mode  :character   Mode  :character   Mode  :character  
     ##                                                          
@@ -249,7 +254,7 @@ summary(df)
     ##                                                          
     ##                                                          
     ##    EduOther           OrgSize            DevType         
-    ##  Length:88883       Length:88883       Length:88883      
+    ##  Length:5737        Length:5737        Length:5737       
     ##  Class :character   Class :character   Class :character  
     ##  Mode  :character   Mode  :character   Mode  :character  
     ##                                                          
@@ -257,7 +262,7 @@ summary(df)
     ##                                                          
     ##                                                          
     ##   YearsCode          Age1stCode        YearsCodePro      
-    ##  Length:88883       Length:88883       Length:88883      
+    ##  Length:5737        Length:5737        Length:5737       
     ##  Class :character   Class :character   Class :character  
     ##  Mode  :character   Mode  :character   Mode  :character  
     ##                                                          
@@ -265,7 +270,7 @@ summary(df)
     ##                                                          
     ##                                                          
     ##   CareerSat            JobSat            MgrIdiot        
-    ##  Length:88883       Length:88883       Length:88883      
+    ##  Length:5737        Length:5737        Length:5737       
     ##  Class :character   Class :character   Class :character  
     ##  Mode  :character   Mode  :character   Mode  :character  
     ##                                                          
@@ -273,7 +278,7 @@ summary(df)
     ##                                                          
     ##                                                          
     ##    MgrMoney           MgrWant            JobSeek         
-    ##  Length:88883       Length:88883       Length:88883      
+    ##  Length:5737        Length:5737        Length:5737       
     ##  Class :character   Class :character   Class :character  
     ##  Mode  :character   Mode  :character   Mode  :character  
     ##                                                          
@@ -281,7 +286,7 @@ summary(df)
     ##                                                          
     ##                                                          
     ##  LastHireDate         LastInt            FizzBuzz        
-    ##  Length:88883       Length:88883       Length:88883      
+    ##  Length:5737        Length:5737        Length:5737       
     ##  Class :character   Class :character   Class :character  
     ##  Mode  :character   Mode  :character   Mode  :character  
     ##                                                          
@@ -289,7 +294,7 @@ summary(df)
     ##                                                          
     ##                                                          
     ##   JobFactors        ResumeUpdate       CurrencySymbol    
-    ##  Length:88883       Length:88883       Length:88883      
+    ##  Length:5737        Length:5737        Length:5737       
     ##  Class :character   Class :character   Class :character  
     ##  Mode  :character   Mode  :character   Mode  :character  
     ##                                                          
@@ -297,39 +302,39 @@ summary(df)
     ##                                                          
     ##                                                          
     ##  CurrencyDesc         CompTotal           CompFreq        
-    ##  Length:88883       Min.   :0.000e+00   Length:88883      
-    ##  Class :character   1st Qu.:2.000e+04   Class :character  
-    ##  Mode  :character   Median :6.200e+04   Mode  :character  
-    ##                     Mean   :5.519e+11                     
-    ##                     3rd Qu.:1.200e+05                     
-    ##                     Max.   :1.000e+16                     
-    ##                     NA's   :32938                         
-    ##  ConvertedComp      WorkWeekHrs        WorkPlan         WorkChallenge     
-    ##  Min.   :      0   Min.   :   1.00   Length:88883       Length:88883      
-    ##  1st Qu.:  25778   1st Qu.:  40.00   Class :character   Class :character  
-    ##  Median :  57287   Median :  40.00   Mode  :character   Mode  :character  
-    ##  Mean   : 127111   Mean   :  42.13                                        
-    ##  3rd Qu.: 100000   3rd Qu.:  44.75                                        
-    ##  Max.   :2000000   Max.   :4850.00                                        
-    ##  NA's   :33060     NA's   :24380                                          
+    ##  Length:5737        Min.   :        0   Length:5737       
+    ##  Class :character   1st Qu.:    30760   Class :character  
+    ##  Mode  :character   Median :    45000   Mode  :character  
+    ##                     Mean   :   168297                     
+    ##                     3rd Qu.:    60000                     
+    ##                     Max.   :474754456                     
+    ##                     NA's   :1692                          
+    ##  ConvertedComp      WorkWeekHrs       WorkPlan         WorkChallenge     
+    ##  Min.   :      0   Min.   :  3.50   Length:5737        Length:5737       
+    ##  1st Qu.:  45797   1st Qu.: 37.50   Class :character   Class :character  
+    ##  Median :  68041   Median : 40.00   Mode  :character   Mode  :character  
+    ##  Mean   : 166182   Mean   : 39.55                                        
+    ##  3rd Qu.: 117763   3rd Qu.: 40.00                                        
+    ##  Max.   :2000000   Max.   :375.00                                        
+    ##  NA's   :1703      NA's   :1232                                          
     ##   WorkRemote          WorkLoc             ImpSyn         
-    ##  Length:88883       Length:88883       Length:88883      
+    ##  Length:5737        Length:5737        Length:5737       
     ##  Class :character   Class :character   Class :character  
     ##  Mode  :character   Mode  :character   Mode  :character  
     ##                                                          
     ##                                                          
     ##                                                          
     ##                                                          
-    ##    CodeRev            CodeRevHrs     UnitTests         PurchaseHow       
-    ##  Length:88883       Min.   : 0.00   Length:88883       Length:88883      
-    ##  Class :character   1st Qu.: 2.00   Class :character   Class :character  
-    ##  Mode  :character   Median : 4.00   Mode  :character   Mode  :character  
-    ##                     Mean   : 5.08                                        
-    ##                     3rd Qu.: 6.00                                        
-    ##                     Max.   :99.00                                        
-    ##                     NA's   :39093                                        
+    ##    CodeRev            CodeRevHrs      UnitTests         PurchaseHow       
+    ##  Length:5737        Min.   : 0.000   Length:5737        Length:5737       
+    ##  Class :character   1st Qu.: 2.000   Class :character   Class :character  
+    ##  Mode  :character   Median : 3.000   Mode  :character   Mode  :character  
+    ##                     Mean   : 4.053                                        
+    ##                     3rd Qu.: 5.000                                        
+    ##                     Max.   :40.000                                        
+    ##                     NA's   :2262                                          
     ##  PurchaseWhat       LanguageWorkedWith LanguageDesireNextYear
-    ##  Length:88883       Length:88883       Length:88883          
+    ##  Length:5737        Length:5737        Length:5737           
     ##  Class :character   Class :character   Class :character      
     ##  Mode  :character   Mode  :character   Mode  :character      
     ##                                                              
@@ -337,7 +342,7 @@ summary(df)
     ##                                                              
     ##                                                              
     ##  DatabaseWorkedWith DatabaseDesireNextYear PlatformWorkedWith
-    ##  Length:88883       Length:88883           Length:88883      
+    ##  Length:5737        Length:5737            Length:5737       
     ##  Class :character   Class :character       Class :character  
     ##  Mode  :character   Mode  :character       Mode  :character  
     ##                                                              
@@ -345,7 +350,7 @@ summary(df)
     ##                                                              
     ##                                                              
     ##  PlatformDesireNextYear WebFrameWorkedWith WebFrameDesireNextYear
-    ##  Length:88883           Length:88883       Length:88883          
+    ##  Length:5737            Length:5737        Length:5737           
     ##  Class :character       Class :character   Class :character      
     ##  Mode  :character       Mode  :character   Mode  :character      
     ##                                                                  
@@ -353,7 +358,7 @@ summary(df)
     ##                                                                  
     ##                                                                  
     ##  MiscTechWorkedWith MiscTechDesireNextYear  DevEnviron       
-    ##  Length:88883       Length:88883           Length:88883      
+    ##  Length:5737        Length:5737            Length:5737       
     ##  Class :character   Class :character       Class :character  
     ##  Mode  :character   Mode  :character       Mode  :character  
     ##                                                              
@@ -361,7 +366,7 @@ summary(df)
     ##                                                              
     ##                                                              
     ##     OpSys            Containers        BlockchainOrg     
-    ##  Length:88883       Length:88883       Length:88883      
+    ##  Length:5737        Length:5737        Length:5737       
     ##  Class :character   Class :character   Class :character  
     ##  Mode  :character   Mode  :character   Mode  :character  
     ##                                                          
@@ -369,7 +374,7 @@ summary(df)
     ##                                                          
     ##                                                          
     ##  BlockchainIs        BetterLife          ITperson        
-    ##  Length:88883       Length:88883       Length:88883      
+    ##  Length:5737        Length:5737        Length:5737       
     ##  Class :character   Class :character   Class :character  
     ##  Mode  :character   Mode  :character   Mode  :character  
     ##                                                          
@@ -377,7 +382,7 @@ summary(df)
     ##                                                          
     ##                                                          
     ##     OffOn           SocialMedia        Extraversion      
-    ##  Length:88883       Length:88883       Length:88883      
+    ##  Length:5737        Length:5737        Length:5737       
     ##  Class :character   Class :character   Class :character  
     ##  Mode  :character   Mode  :character   Mode  :character  
     ##                                                          
@@ -385,7 +390,7 @@ summary(df)
     ##                                                          
     ##                                                          
     ##   ScreenName         SOVisit1st        SOVisitFreq       
-    ##  Length:88883       Length:88883       Length:88883      
+    ##  Length:5737        Length:5737        Length:5737       
     ##  Class :character   Class :character   Class :character  
     ##  Mode  :character   Mode  :character   Mode  :character  
     ##                                                          
@@ -393,7 +398,7 @@ summary(df)
     ##                                                          
     ##                                                          
     ##   SOVisitTo         SOFindAnswer       SOTimeSaved       
-    ##  Length:88883       Length:88883       Length:88883      
+    ##  Length:5737        Length:5737        Length:5737       
     ##  Class :character   Class :character   Class :character  
     ##  Mode  :character   Mode  :character   Mode  :character  
     ##                                                          
@@ -401,7 +406,7 @@ summary(df)
     ##                                                          
     ##                                                          
     ##  SOHowMuchTime       SOAccount          SOPartFreq       
-    ##  Length:88883       Length:88883       Length:88883      
+    ##  Length:5737        Length:5737        Length:5737       
     ##  Class :character   Class :character   Class :character  
     ##  Mode  :character   Mode  :character   Mode  :character  
     ##                                                          
@@ -409,7 +414,7 @@ summary(df)
     ##                                                          
     ##                                                          
     ##     SOJobs            EntTeams            SOComm         
-    ##  Length:88883       Length:88883       Length:88883      
+    ##  Length:5737        Length:5737        Length:5737       
     ##  Class :character   Class :character   Class :character  
     ##  Mode  :character   Mode  :character   Mode  :character  
     ##                                                          
@@ -417,15 +422,15 @@ summary(df)
     ##                                                          
     ##                                                          
     ##  WelcomeChange      SONewContent            Age           Gender         
-    ##  Length:88883       Length:88883       Min.   : 1.00   Length:88883      
-    ##  Class :character   Class :character   1st Qu.:24.00   Class :character  
-    ##  Mode  :character   Mode  :character   Median :29.00   Mode  :character  
-    ##                                        Mean   :30.34                     
-    ##                                        3rd Qu.:35.00                     
-    ##                                        Max.   :99.00                     
-    ##                                        NA's   :9673                      
+    ##  Length:5737        Length:5737        Min.   : 2.00   Length:5737       
+    ##  Class :character   Class :character   1st Qu.:25.00   Class :character  
+    ##  Mode  :character   Mode  :character   Median :30.00   Mode  :character  
+    ##                                        Mean   :32.24                     
+    ##                                        3rd Qu.:38.00                     
+    ##                                        Max.   :91.00                     
+    ##                                        NA's   :475                       
     ##     Trans            Sexuality          Ethnicity        
-    ##  Length:88883       Length:88883       Length:88883      
+    ##  Length:5737        Length:5737        Length:5737       
     ##  Class :character   Class :character   Class :character  
     ##  Mode  :character   Mode  :character   Mode  :character  
     ##                                                          
@@ -433,7 +438,7 @@ summary(df)
     ##                                                          
     ##                                                          
     ##   Dependents        SurveyLength        SurveyEase       
-    ##  Length:88883       Length:88883       Length:88883      
+    ##  Length:5737        Length:5737        Length:5737       
     ##  Class :character   Class :character   Class :character  
     ##  Mode  :character   Mode  :character   Mode  :character  
     ##                                                          
@@ -442,7 +447,7 @@ summary(df)
     ## 
 
 ``` r
-View(df)
+# View(df)
 colnames(df)
 ```
 
@@ -496,43 +501,43 @@ colnames(df)
 
 ``` r
 df %>% 
-   select(Employment, Country)
+   select(Employment, Ethnicity)
 ```
 
-    ## # A tibble: 88,883 x 2
-    ##    Employment                                         Country              
-    ##    <chr>                                              <chr>                
-    ##  1 Not employed, and not looking for work             United Kingdom       
-    ##  2 Not employed, but looking for work                 Bosnia and Herzegovi…
-    ##  3 Employed full-time                                 Thailand             
-    ##  4 Employed full-time                                 United States        
-    ##  5 Employed full-time                                 Ukraine              
-    ##  6 Employed full-time                                 Canada               
-    ##  7 Independent contractor, freelancer, or self-emplo… Ukraine              
-    ##  8 Not employed, but looking for work                 India                
-    ##  9 Employed full-time                                 New Zealand          
-    ## 10 Employed full-time                                 India                
-    ## # … with 88,873 more rows
+    ## # A tibble: 5,737 x 2
+    ##    Employment                             Ethnicity                   
+    ##    <chr>                                  <chr>                       
+    ##  1 Not employed, and not looking for work <NA>                        
+    ##  2 Employed full-time                     White or of European descent
+    ##  3 Employed full-time                     White or of European descent
+    ##  4 Employed full-time                     Biracial                    
+    ##  5 Employed full-time                     <NA>                        
+    ##  6 Employed full-time                     White or of European descent
+    ##  7 Employed full-time                     White or of European descent
+    ##  8 Employed full-time                     White or of European descent
+    ##  9 Employed full-time                     White or of European descent
+    ## 10 Employed full-time                     South Asian                 
+    ## # … with 5,727 more rows
 
 ``` r
 df %>% 
    select(-Respondent)
 ```
 
-    ## # A tibble: 88,883 x 84
+    ## # A tibble: 5,737 x 84
     ##    MainBranch Hobbyist OpenSourcer OpenSource Employment Country Student
     ##    <chr>      <chr>    <chr>       <chr>      <chr>      <chr>   <chr>  
     ##  1 I am a st… Yes      Never       The quali… Not emplo… United… No     
-    ##  2 I am a st… No       Less than … The quali… Not emplo… Bosnia… Yes, f…
-    ##  3 I am not … Yes      Never       The quali… Employed … Thaila… No     
-    ##  4 I am a de… No       Never       The quali… Employed … United… No     
-    ##  5 I am a de… Yes      Once a mon… OSS is, o… Employed … Ukraine No     
-    ##  6 I am not … Yes      Never       The quali… Employed … Canada  No     
-    ##  7 I am a de… No       Never       The quali… Independe… Ukraine No     
-    ##  8 I code pr… Yes      Less than … OSS is, o… Not emplo… India   <NA>   
-    ##  9 I am a de… Yes      Once a mon… The quali… Employed … New Ze… No     
-    ## 10 I am a de… Yes      Once a mon… OSS is, o… Employed … India   No     
-    ## # … with 88,873 more rows, and 77 more variables: EdLevel <chr>,
+    ##  2 I am a de… Yes      Never       The quali… Employed … United… No     
+    ##  3 I am a de… No       Never       The quali… Employed … United… No     
+    ##  4 I am a de… Yes      Less than … OSS is, o… Employed … United… No     
+    ##  5 I am a de… Yes      Once a mon… OSS is, o… Employed … United… No     
+    ##  6 I am a de… Yes      Never       OSS is, o… Employed … United… No     
+    ##  7 I am not … Yes      Once a mon… OSS is, o… Employed … United… No     
+    ##  8 I am a de… Yes      Never       The quali… Employed … United… No     
+    ##  9 I code pr… Yes      Less than … OSS is, o… Employed … United… Yes, f…
+    ## 10 I am a de… Yes      Never       OSS is, o… Employed … United… Yes, p…
+    ## # … with 5,727 more rows, and 77 more variables: EdLevel <chr>,
     ## #   UndergradMajor <chr>, EduOther <chr>, OrgSize <chr>, DevType <chr>,
     ## #   YearsCode <chr>, Age1stCode <chr>, YearsCodePro <chr>,
     ## #   CareerSat <chr>, JobSat <chr>, MgrIdiot <chr>, MgrMoney <chr>,
@@ -565,20 +570,20 @@ df %>%
    filter(Employment == "Not employed, but looking for work")
 ```
 
-    ## # A tibble: 5,600 x 85
+    ## # A tibble: 171 x 85
     ##    Respondent MainBranch Hobbyist OpenSourcer OpenSource Employment Country
     ##         <dbl> <chr>      <chr>    <chr>       <chr>      <chr>      <chr>  
-    ##  1          2 I am a st… No       Less than … The quali… Not emplo… Bosnia…
-    ##  2          8 I code pr… Yes      Less than … OSS is, o… Not emplo… India  
-    ##  3         15 I am a st… Yes      Never       OSS is, o… Not emplo… India  
-    ##  4         27 I used to… Yes      Less than … OSS is, o… Not emplo… Colomb…
-    ##  5         34 I am a st… Yes      Never       OSS is, o… Not emplo… Sri La…
-    ##  6        103 I code pr… Yes      Less than … The quali… Not emplo… Russia…
-    ##  7        133 I code pr… Yes      Once a mon… The quali… Not emplo… United…
-    ##  8        171 I am a st… Yes      Less than … OSS is, o… Not emplo… Bangla…
-    ##  9        175 I am a st… Yes      Less than … OSS is, o… Not emplo… Greece 
-    ## 10        180 I used to… Yes      Never       OSS is, o… Not emplo… Italy  
-    ## # … with 5,590 more rows, and 78 more variables: Student <chr>,
+    ##  1       2534 I am a de… Yes      Less than … The quali… Not emplo… United…
+    ##  2       2684 I am a st… Yes      Never       <NA>       Not emplo… United…
+    ##  3       3559 I am a st… Yes      Never       OSS is, o… Not emplo… United…
+    ##  4       4148 I am a st… No       Never       OSS is, o… Not emplo… United…
+    ##  5       4781 I am a st… No       Never       The quali… Not emplo… United…
+    ##  6       4952 I am a st… Yes      Less than … OSS is, o… Not emplo… United…
+    ##  7       5705 I am a st… Yes      Less than … OSS is, o… Not emplo… United…
+    ##  8       6334 I code pr… Yes      Never       The quali… Not emplo… United…
+    ##  9       6822 I am a st… Yes      Never       The quali… Not emplo… United…
+    ## 10       7293 I am a st… Yes      Less than … OSS is, o… Not emplo… United…
+    ## # … with 161 more rows, and 78 more variables: Student <chr>,
     ## #   EdLevel <chr>, UndergradMajor <chr>, EduOther <chr>, OrgSize <chr>,
     ## #   DevType <chr>, YearsCode <chr>, Age1stCode <chr>, YearsCodePro <chr>,
     ## #   CareerSat <chr>, JobSat <chr>, MgrIdiot <chr>, MgrMoney <chr>,
@@ -609,20 +614,20 @@ df %>%
    filter(Employment != "Not employed, but looking for work")
 ```
 
-    ## # A tibble: 81,581 x 85
+    ## # A tibble: 5,495 x 85
     ##    Respondent MainBranch Hobbyist OpenSourcer OpenSource Employment Country
     ##         <dbl> <chr>      <chr>    <chr>       <chr>      <chr>      <chr>  
     ##  1          1 I am a st… Yes      Never       The quali… Not emplo… United…
-    ##  2          3 I am not … Yes      Never       The quali… Employed … Thaila…
-    ##  3          4 I am a de… No       Never       The quali… Employed … United…
-    ##  4          5 I am a de… Yes      Once a mon… OSS is, o… Employed … Ukraine
-    ##  5          6 I am not … Yes      Never       The quali… Employed … Canada 
-    ##  6          7 I am a de… No       Never       The quali… Independe… Ukraine
-    ##  7          9 I am a de… Yes      Once a mon… The quali… Employed … New Ze…
-    ##  8         10 I am a de… Yes      Once a mon… OSS is, o… Employed … India  
-    ##  9         12 I am a st… No       Never       OSS is, o… Employed … Canada 
-    ## 10         13 I am a de… Yes      Less than … OSS is, o… Employed … United…
-    ## # … with 81,571 more rows, and 78 more variables: Student <chr>,
+    ##  2         16 I am a de… Yes      Never       The quali… Employed … United…
+    ##  3         76 I am a de… No       Never       The quali… Employed … United…
+    ##  4         80 I am a de… Yes      Less than … OSS is, o… Employed … United…
+    ##  5         82 I am a de… Yes      Once a mon… OSS is, o… Employed … United…
+    ##  6         94 I am a de… Yes      Never       OSS is, o… Employed … United…
+    ##  7        128 I am not … Yes      Once a mon… OSS is, o… Employed … United…
+    ##  8        164 I am a de… Yes      Never       The quali… Employed … United…
+    ##  9        182 I code pr… Yes      Less than … OSS is, o… Employed … United…
+    ## 10        188 I am a de… Yes      Never       OSS is, o… Employed … United…
+    ## # … with 5,485 more rows, and 78 more variables: Student <chr>,
     ## #   EdLevel <chr>, UndergradMajor <chr>, EduOther <chr>, OrgSize <chr>,
     ## #   DevType <chr>, YearsCode <chr>, Age1stCode <chr>, YearsCodePro <chr>,
     ## #   CareerSat <chr>, JobSat <chr>, MgrIdiot <chr>, MgrMoney <chr>,
@@ -658,54 +663,55 @@ df %>%
     ## # A tibble: 7 x 2
     ##   Employment                                               n
     ##   <chr>                                                <int>
-    ## 1 <NA>                                                  1702
-    ## 2 Employed full-time                                   64440
-    ## 3 Employed part-time                                    4469
-    ## 4 Independent contractor, freelancer, or self-employed  8511
-    ## 5 Not employed, and not looking for work                3803
-    ## 6 Not employed, but looking for work                    5600
-    ## 7 Retired                                                358
+    ## 1 <NA>                                                    71
+    ## 2 Employed full-time                                    4458
+    ## 3 Employed part-time                                     120
+    ## 4 Independent contractor, freelancer, or self-employed   614
+    ## 5 Not employed, and not looking for work                 261
+    ## 6 Not employed, but looking for work                     171
+    ## 7 Retired                                                 42
 
 ``` r
 df %>% 
-   count(Employment, Country)
+   count(Employment, Ethnicity)
 ```
 
-    ## # A tibble: 905 x 3
-    ##    Employment Country                 n
-    ##    <chr>      <chr>               <int>
-    ##  1 <NA>       <NA>                   28
-    ##  2 <NA>       Afghanistan             6
-    ##  3 <NA>       Algeria                12
-    ##  4 <NA>       Antigua and Barbuda     2
-    ##  5 <NA>       Argentina               7
-    ##  6 <NA>       Armenia                 1
-    ##  7 <NA>       Australia              34
-    ##  8 <NA>       Austria                20
-    ##  9 <NA>       Azerbaijan              4
-    ## 10 <NA>       Bahamas                 1
-    ## # … with 895 more rows
+    ## # A tibble: 106 x 3
+    ##    Employment       Ethnicity                                             n
+    ##    <chr>            <chr>                                             <int>
+    ##  1 <NA>             <NA>                                                 14
+    ##  2 <NA>             Biracial                                              1
+    ##  3 <NA>             Black or of African descent;East Asian;Hispanic …     2
+    ##  4 <NA>             Black or of African descent;White or of European…     1
+    ##  5 <NA>             East Asian                                            1
+    ##  6 <NA>             Middle Eastern                                        1
+    ##  7 <NA>             South Asian                                           2
+    ##  8 <NA>             White or of European descent                         48
+    ##  9 <NA>             White or of European descent;Biracial                 1
+    ## 10 Employed full-t… <NA>                                                270
+    ## # … with 96 more rows
 
 ``` r
 df %>% 
    drop_na() %>% 
-   count(Employment, Country)
+   count(Employment, Ethnicity)
 ```
 
-    ## # A tibble: 141 x 3
-    ##    Employment         Country        n
-    ##    <chr>              <chr>      <int>
-    ##  1 Employed full-time Albania        3
-    ##  2 Employed full-time Algeria        1
-    ##  3 Employed full-time Argentina     15
-    ##  4 Employed full-time Armenia        2
-    ##  5 Employed full-time Australia     94
-    ##  6 Employed full-time Austria       16
-    ##  7 Employed full-time Bangladesh     8
-    ##  8 Employed full-time Belarus        2
-    ##  9 Employed full-time Belgium       34
-    ## 10 Employed full-time Bolivia        2
-    ## # … with 131 more rows
+    ## # A tibble: 12 x 3
+    ##    Employment        Ethnicity                                            n
+    ##    <chr>             <chr>                                            <int>
+    ##  1 Employed full-ti… Biracial                                             1
+    ##  2 Employed full-ti… Black or of African descent                          2
+    ##  3 Employed full-ti… East Asian                                           3
+    ##  4 Employed full-ti… Hispanic or Latino/Latina                            2
+    ##  5 Employed full-ti… Hispanic or Latino/Latina;White or of European …     1
+    ##  6 Employed full-ti… Middle Eastern                                       4
+    ##  7 Employed full-ti… Multiracial                                          2
+    ##  8 Employed full-ti… South Asian                                         11
+    ##  9 Employed full-ti… South Asian;White or of European descent             1
+    ## 10 Employed full-ti… South Asian;White or of European descent;Multir…     1
+    ## 11 Employed full-ti… White or of European descent                       244
+    ## 12 Employed part-ti… White or of European descent                         2
 
 ### Sort data
 
@@ -718,13 +724,13 @@ df %>%
     ## # A tibble: 7 x 2
     ##   Employment                                               n
     ##   <chr>                                                <int>
-    ## 1 Employed full-time                                   64440
-    ## 2 Independent contractor, freelancer, or self-employed  8511
-    ## 3 Not employed, but looking for work                    5600
-    ## 4 Employed part-time                                    4469
-    ## 5 Not employed, and not looking for work                3803
-    ## 6 <NA>                                                  1702
-    ## 7 Retired                                                358
+    ## 1 Employed full-time                                    4458
+    ## 2 Independent contractor, freelancer, or self-employed   614
+    ## 3 Not employed, and not looking for work                 261
+    ## 4 Not employed, but looking for work                     171
+    ## 5 Employed part-time                                     120
+    ## 6 <NA>                                                    71
+    ## 7 Retired                                                 42
 
 ### Add/change variables
 
@@ -734,20 +740,20 @@ df %>%
    mutate(work_week = WorkWeekHrs / (24 * 7))
 ```
 
-    ## # A tibble: 88,883 x 2
+    ## # A tibble: 5,737 x 2
     ##    WorkWeekHrs work_week
     ##          <dbl>     <dbl>
-    ##  1          NA   NA     
-    ##  2          NA   NA     
-    ##  3          40    0.238 
-    ##  4          80    0.476 
-    ##  5          55    0.327 
-    ##  6          15    0.0893
-    ##  7          32    0.190 
-    ##  8          NA   NA     
-    ##  9          32    0.190 
-    ## 10          70    0.417 
-    ## # … with 88,873 more rows
+    ##  1          NA    NA    
+    ##  2          40     0.238
+    ##  3          40     0.238
+    ##  4          50     0.298
+    ##  5          35     0.208
+    ##  6          44     0.262
+    ##  7          50     0.298
+    ##  8          38     0.226
+    ##  9          NA    NA    
+    ## 10          42     0.25 
+    ## # … with 5,727 more rows
 
 ### Summarise
 
@@ -755,118 +761,108 @@ Similar to mutate, but collapses results
 
 ``` r
 df %>% 
-   group_by(Country) %>% 
+   group_by(EdLevel) %>% 
    summarise(hrs = mean(WorkWeekHrs))
 ```
 
-    ## # A tibble: 180 x 2
-    ##    Country               hrs
-    ##    <chr>               <dbl>
-    ##  1 <NA>                   NA
-    ##  2 Afghanistan            NA
-    ##  3 Albania                NA
-    ##  4 Algeria                NA
-    ##  5 Andorra                NA
-    ##  6 Angola                 NA
-    ##  7 Antigua and Barbuda    NA
-    ##  8 Argentina              NA
-    ##  9 Armenia                NA
-    ## 10 Australia              NA
-    ## # … with 170 more rows
+    ## # A tibble: 10 x 2
+    ##    EdLevel                                                              hrs
+    ##    <chr>                                                              <dbl>
+    ##  1 <NA>                                                                  NA
+    ##  2 Associate degree                                                      NA
+    ##  3 Bachelor’s degree (BA, BS, B.Eng., etc.)                              NA
+    ##  4 I never completed any formal education                                NA
+    ##  5 Master’s degree (MA, MS, M.Eng., MBA, etc.)                           NA
+    ##  6 Other doctoral degree (Ph.D, Ed.D., etc.)                             NA
+    ##  7 Primary/elementary school                                             NA
+    ##  8 Professional degree (JD, MD, etc.)                                    NA
+    ##  9 Secondary school (e.g. American high school, German Realschule or…    NA
+    ## 10 Some college/university study without earning a degree                NA
 
 ``` r
 df %>% 
-   drop_na(Country, WorkWeekHrs) %>% 
-   group_by(Country) %>% 
+   drop_na(EdLevel, WorkWeekHrs) %>% 
+   group_by(EdLevel) %>% 
    summarise(hrs = mean(WorkWeekHrs))
 ```
 
-    ## # A tibble: 168 x 2
-    ##    Country               hrs
-    ##    <chr>               <dbl>
-    ##  1 Afghanistan          55.4
-    ##  2 Albania              40.1
-    ##  3 Algeria              38.2
-    ##  4 Andorra              42  
-    ##  5 Angola               45  
-    ##  6 Antigua and Barbuda  40  
-    ##  7 Argentina            37.0
-    ##  8 Armenia              41.2
-    ##  9 Australia            40.1
-    ## 10 Austria              63.7
-    ## # … with 158 more rows
+    ## # A tibble: 9 x 2
+    ##   EdLevel                                                               hrs
+    ##   <chr>                                                               <dbl>
+    ## 1 Associate degree                                                     38.7
+    ## 2 Bachelor’s degree (BA, BS, B.Eng., etc.)                             39.3
+    ## 3 I never completed any formal education                               49.3
+    ## 4 Master’s degree (MA, MS, M.Eng., MBA, etc.)                          39.7
+    ## 5 Other doctoral degree (Ph.D, Ed.D., etc.)                            40.6
+    ## 6 Primary/elementary school                                            37.4
+    ## 7 Professional degree (JD, MD, etc.)                                   43  
+    ## 8 Secondary school (e.g. American high school, German Realschule or …  39.3
+    ## 9 Some college/university study without earning a degree               39.9
 
 ``` r
 df %>% 
-   drop_na(Country, WorkWeekHrs) %>% 
-   group_by(Country) %>% 
+   drop_na(EdLevel, WorkWeekHrs) %>% 
+   group_by(EdLevel) %>% 
    summarise(hrs = mean(WorkWeekHrs)) %>% 
    arrange(desc(hrs))
 ```
 
-    ## # A tibble: 168 x 2
-    ##    Country        hrs
-    ##    <chr>        <dbl>
-    ##  1 Finland       82.8
-    ##  2 Norway        76.4
-    ##  3 Burundi       68  
-    ##  4 Sierra Leone  65  
-    ##  5 Austria       63.7
-    ##  6 Mali          57.5
-    ##  7 Afghanistan   55.4
-    ##  8 Turkmenistan  52.3
-    ##  9 Oman          50  
-    ## 10 Seychelles    50  
-    ## # … with 158 more rows
+    ## # A tibble: 9 x 2
+    ##   EdLevel                                                               hrs
+    ##   <chr>                                                               <dbl>
+    ## 1 I never completed any formal education                               49.3
+    ## 2 Professional degree (JD, MD, etc.)                                   43  
+    ## 3 Other doctoral degree (Ph.D, Ed.D., etc.)                            40.6
+    ## 4 Some college/university study without earning a degree               39.9
+    ## 5 Master’s degree (MA, MS, M.Eng., MBA, etc.)                          39.7
+    ## 6 Secondary school (e.g. American high school, German Realschule or …  39.3
+    ## 7 Bachelor’s degree (BA, BS, B.Eng., etc.)                             39.3
+    ## 8 Associate degree                                                     38.7
+    ## 9 Primary/elementary school                                            37.4
 
 ``` r
 df %>% 
-   drop_na(Country, WorkWeekHrs) %>% 
-   group_by(Country) %>% 
+   drop_na(EdLevel, WorkWeekHrs) %>% 
+   group_by(EdLevel) %>% 
    summarise(hrs = mean(WorkWeekHrs),
              n = n()) %>% 
    arrange(desc(hrs))
 ```
 
-    ## # A tibble: 168 x 3
-    ##    Country        hrs     n
-    ##    <chr>        <dbl> <int>
-    ##  1 Finland       82.8   416
-    ##  2 Norway        76.4   451
-    ##  3 Burundi       68       3
-    ##  4 Sierra Leone  65       2
-    ##  5 Austria       63.7   594
-    ##  6 Mali          57.5     2
-    ##  7 Afghanistan   55.4    17
-    ##  8 Turkmenistan  52.3     3
-    ##  9 Oman          50       3
-    ## 10 Seychelles    50       1
-    ## # … with 158 more rows
+    ## # A tibble: 9 x 3
+    ##   EdLevel                                                         hrs     n
+    ##   <chr>                                                         <dbl> <int>
+    ## 1 I never completed any formal education                         49.3    14
+    ## 2 Professional degree (JD, MD, etc.)                             43      16
+    ## 3 Other doctoral degree (Ph.D, Ed.D., etc.)                      40.6   235
+    ## 4 Some college/university study without earning a degree         39.9   610
+    ## 5 Master’s degree (MA, MS, M.Eng., MBA, etc.)                    39.7  1063
+    ## 6 Secondary school (e.g. American high school, German Realschu…  39.3   223
+    ## 7 Bachelor’s degree (BA, BS, B.Eng., etc.)                       39.3  2194
+    ## 8 Associate degree                                               38.7    67
+    ## 9 Primary/elementary school                                      37.4    10
 
 ``` r
 df %>% 
-   drop_na(Country, WorkWeekHrs) %>% 
-   group_by(Country) %>% 
+   drop_na(EdLevel, WorkWeekHrs) %>% 
+   group_by(EdLevel) %>% 
    summarise(hrs = mean(WorkWeekHrs),
              n = n()) %>% 
    arrange(desc(hrs)) %>% 
-   filter(n > 100)
+   filter(n > 10)
 ```
 
-    ## # A tibble: 62 x 3
-    ##    Country       hrs     n
-    ##    <chr>       <dbl> <int>
-    ##  1 Finland      82.8   416
-    ##  2 Norway       76.4   451
-    ##  3 Austria      63.7   594
-    ##  4 Sweden       47.0  1002
-    ##  5 Iran         46.7   478
-    ##  6 Switzerland  46.4   751
-    ##  7 Israel       45.6   707
-    ##  8 Sri Lanka    45.4   212
-    ##  9 Slovakia     44.8   172
-    ## 10 Poland       44.6  1488
-    ## # … with 52 more rows
+    ## # A tibble: 8 x 3
+    ##   EdLevel                                                         hrs     n
+    ##   <chr>                                                         <dbl> <int>
+    ## 1 I never completed any formal education                         49.3    14
+    ## 2 Professional degree (JD, MD, etc.)                             43      16
+    ## 3 Other doctoral degree (Ph.D, Ed.D., etc.)                      40.6   235
+    ## 4 Some college/university study without earning a degree         39.9   610
+    ## 5 Master’s degree (MA, MS, M.Eng., MBA, etc.)                    39.7  1063
+    ## 6 Secondary school (e.g. American high school, German Realschu…  39.3   223
+    ## 7 Bachelor’s degree (BA, BS, B.Eng., etc.)                       39.3  2194
+    ## 8 Associate degree                                               38.7    67
 
 Could do that fancy Bayes trick here…
 <http://store.varianceexplained.org/>
@@ -877,7 +873,7 @@ Reiterate the tidyverse pages:
 <https://ggplot2.tidyverse.org/reference/>
 
 ``` r
-ggplot(df, aes(Country)) +
+ggplot(df, aes(EdLevel)) +
    geom_bar()
 ```
 
@@ -885,8 +881,8 @@ ggplot(df, aes(Country)) +
 
 ``` r
 df %>% 
-   mutate(Country = fct_lump(Country, 20)) %>% 
-   ggplot(aes(Country)) +
+   mutate(EdLevel = fct_lump(EdLevel, 4)) %>% 
+   ggplot(aes(EdLevel)) +
    geom_bar()
 ```
 
@@ -894,9 +890,9 @@ df %>%
 
 ``` r
 df %>% 
-   drop_na(Country) %>% 
-   mutate(Country = fct_lump(Country, 20)) %>% 
-   ggplot(aes(Country)) +
+   drop_na(EdLevel) %>% 
+   mutate(EdLevel = fct_lump(EdLevel, 4)) %>% 
+   ggplot(aes(EdLevel)) +
    geom_bar() +
    coord_flip()
 ```
@@ -905,9 +901,9 @@ df %>%
 
 ``` r
 df %>% 
-   drop_na(Country) %>% 
-   mutate(Country = fct_lump(Country, 20)) %>% 
-   ggplot(aes(Country)) +
+   drop_na(EdLevel) %>% 
+   mutate(EdLevel = fct_lump(EdLevel, 4)) %>% 
+   ggplot(aes(EdLevel)) +
    geom_bar() +
    coord_flip() +
    labs(title = "Survey respondents",
@@ -919,10 +915,10 @@ df %>%
 
 ``` r
 df %>% 
-   drop_na(Country) %>% 
-   mutate(Country = fct_lump(Country, 20),
-          Country = fct_infreq(Country)) %>% 
-   ggplot(aes(Country)) +
+   drop_na(EdLevel) %>% 
+   mutate(EdLevel = fct_lump(EdLevel, 4),
+          EdLevel = fct_infreq(EdLevel)) %>% 
+   ggplot(aes(EdLevel)) +
    geom_bar() +
    coord_flip() +
    labs(title = "Survey respondents",
@@ -934,19 +930,36 @@ df %>%
 
 ``` r
 df %>% 
-   drop_na(Country) %>% 
-   mutate(Country = fct_lump(Country, 20),
-          Country = fct_infreq(Country)) %>% 
-   ggplot(aes(Country)) +
-   geom_bar() +
+   drop_na(EdLevel) %>% 
+   mutate(EdLevel = fct_lump(EdLevel, 4),
+          EdLevel = fct_infreq(EdLevel)) %>% 
+   ggplot(aes(EdLevel)) +
+   geom_bar(fill = "#75ab42") +
    coord_flip() +
-   labs(title = "Survey respondents country",
+   labs(title = "Survey respondents education",
         x = "",
         y = "Respondents") +
    theme_light()
 ```
 
 ![](Walkthrough_files/figure-gfm/ggplot-6.png)<!-- -->
+
+``` r
+df %>% 
+   drop_na(EdLevel) %>% 
+   mutate(EdLevel = fct_lump(EdLevel, 4),
+          EdLevel = str_wrap(EdLevel, width = 60),
+          EdLevel = fct_infreq(EdLevel)) %>% 
+   ggplot(aes(EdLevel)) +
+   geom_bar(fill = "#75ab42") +
+   coord_flip() +
+   labs(title = "Survey respondents education",
+        x = "",
+        y = "Respondents") +
+   theme_light()
+```
+
+![](Walkthrough_files/figure-gfm/ggplot-7.png)<!-- -->
 
 ## Functions
 
@@ -979,16 +992,65 @@ plot_function("WorkLoc")
 
 ![](Walkthrough_files/figure-gfm/function-1.png)<!-- -->
 
+## Models
+
+Very quickly\!
+
+``` r
+x = df %>% 
+   mutate(YearsCode = as.numeric(YearsCode)) %>% 
+   select(YearsCode, CompTotal, CompFreq) %>% 
+   filter(CompFreq == "Yearly") %>% 
+   drop_na()
+```
+
+    ## Warning: NAs introduced by coercion
+
+``` r
+par(mfrow = c(2, 2))
+lm(CompTotal ~ YearsCode, data = x) %>% 
+   plot()
+```
+
+![](Walkthrough_files/figure-gfm/models-1.png)<!-- -->
+
+``` r
+par(mfrow = c(1, 1))
+
+ggplot(x, aes(YearsCode, CompTotal)) +
+   geom_point() +
+   stat_smooth(method = "lm") +
+   coord_cartesian(ylim = c(0, 150000))
+```
+
+![](Walkthrough_files/figure-gfm/models-2.png)<!-- -->
+
 ## Question
 
 Here we can put it all together, with a little more magic to establish a
 question.
 
 ``` r
+# Split out languages worked with
+x = df %>% 
+   select(Respondent, LanguageWorkedWith)
+
+# Make Languages into a tidy column
+x = lapply(1:nrow(x), function(i){
+   y = str_split(x[i, 2], ";") %>% 
+      unlist()
+   tibble(Respondent = x$Respondent[i],
+          Languages = y)
+})
+
+# Convert list into a data frame (tibble)
+x = do.call("rbind.data.frame", x) %>% 
+   filter(Languages == "R")
+
 df %>% 
-   filter(str_detect(LanguageWorkedWith, ";R;")) %>% 
+   inner_join(x) %>% 
    mutate(EdLevel = replace_na(EdLevel, "Unanswered"),
-          EdLevel = str_wrap(EdLevel, width=60),
+          EdLevel = str_wrap(EdLevel, width=40),
           EdLevel = fct_infreq(EdLevel)) %>% 
    ggplot(aes(EdLevel)) +
    geom_bar() +
@@ -1003,9 +1065,11 @@ df %>%
    facet_wrap(~str_wrap(MainBranch, width=40))
 ```
 
+    ## Joining, by = "Respondent"
+
 ![](Walkthrough_files/figure-gfm/question-1.png)<!-- -->
 
-  - Popular with hobby students
-  - Popular with researchers - probably\!
+### Your task
 
-**Q:** Can you explore the last statement?
+**R looks popular with researchers, can you explore this and visualise
+an argument?**

@@ -26,14 +26,17 @@ You can download it from <https://insights.stackoverflow.com/survey>.
 ... and further resources
 
 * `?Function`
-* <https://www.tidyverse.org/>
+* <http://edinbr.org/> your local user group
+* <https://ourcodingclub.github.io/> coding club
+* <https://www.tidyverse.org/> help guides
 * <http://swcarpentry.github.io/r-novice-inflammation>
 * <https://datacarpentry.org/R-ecology-lesson/> or <https://datacarpentry.org/r-socialsci/>
 * <https://www.rstudio.com/resources/cheatsheets/>
 * <https://www.coursera.org/learn/r-programming?>
 * <https://r4ds.had.co.nz/>
-* <http://dx.doi.org/10.18637/jss.v059.i10> 131256 downloads!
+* <http://dx.doi.org/10.18637/jss.v059.i10> 131256 downloads for tidy data!
 * <https://bitbucket.org/sruclees/help/wiki/Home> SRUC REES data wiki
+* SRUC R user group: <https://teams.microsoft.com/l/team/19%3a4492dd8b6fe24989a599ac8889dba374%40thread.skype/conversations?groupId=720f4eb2-1f80-4943-afa7-89f24b8b97c6&tenantId=c8542d98-e64c-446e-b8d5-0c98ffe56526>
 
 
 ## Language tips
@@ -59,7 +62,7 @@ library(tidyverse)
 ### Read
 
 ```{r data}
-df = read_csv("../data/survey_results_public.csv")
+df = read_csv("../data/survey_results_public_UK.csv")
 schema = read_csv("../data/survey_results_schema.csv")
 
 ?read_csv
@@ -75,7 +78,7 @@ schema = read_csv("../data/survey_results_schema.csv")
 schema
 glimpse(df)
 summary(df)
-View(df)
+# View(df)
 colnames(df)
 ```
 
@@ -86,7 +89,7 @@ colnames(df)
 
 ```{r select}
 df %>% 
-   select(Employment, Country)
+   select(Employment, Ethnicity)
 
 df %>% 
    select(-Respondent)
@@ -111,11 +114,11 @@ df %>%
    count(Employment)
 
 df %>% 
-   count(Employment, Country)
+   count(Employment, Ethnicity)
 
 df %>% 
    drop_na() %>% 
-   count(Employment, Country)
+   count(Employment, Ethnicity)
 ```
 
 
@@ -143,34 +146,34 @@ Similar to mutate, but collapses results
 
 ```{r summarise}
 df %>% 
-   group_by(Country) %>% 
+   group_by(EdLevel) %>% 
    summarise(hrs = mean(WorkWeekHrs))
 
 df %>% 
-   drop_na(Country, WorkWeekHrs) %>% 
-   group_by(Country) %>% 
+   drop_na(EdLevel, WorkWeekHrs) %>% 
+   group_by(EdLevel) %>% 
    summarise(hrs = mean(WorkWeekHrs))
 
 df %>% 
-   drop_na(Country, WorkWeekHrs) %>% 
-   group_by(Country) %>% 
+   drop_na(EdLevel, WorkWeekHrs) %>% 
+   group_by(EdLevel) %>% 
    summarise(hrs = mean(WorkWeekHrs)) %>% 
    arrange(desc(hrs))
 
 df %>% 
-   drop_na(Country, WorkWeekHrs) %>% 
-   group_by(Country) %>% 
+   drop_na(EdLevel, WorkWeekHrs) %>% 
+   group_by(EdLevel) %>% 
    summarise(hrs = mean(WorkWeekHrs),
              n = n()) %>% 
    arrange(desc(hrs))
 
 df %>% 
-   drop_na(Country, WorkWeekHrs) %>% 
-   group_by(Country) %>% 
+   drop_na(EdLevel, WorkWeekHrs) %>% 
+   group_by(EdLevel) %>% 
    summarise(hrs = mean(WorkWeekHrs),
              n = n()) %>% 
    arrange(desc(hrs)) %>% 
-   filter(n > 100)
+   filter(n > 10)
 ```
 
 Could do that fancy Bayes trick here...
@@ -182,25 +185,25 @@ Could do that fancy Bayes trick here...
 Reiterate the tidyverse pages: <https://ggplot2.tidyverse.org/reference/>
 
 ```{r ggplot}
-ggplot(df, aes(Country)) +
+ggplot(df, aes(EdLevel)) +
    geom_bar()
 
 df %>% 
-   mutate(Country = fct_lump(Country, 20)) %>% 
-   ggplot(aes(Country)) +
+   mutate(EdLevel = fct_lump(EdLevel, 4)) %>% 
+   ggplot(aes(EdLevel)) +
    geom_bar()
 
 df %>% 
-   drop_na(Country) %>% 
-   mutate(Country = fct_lump(Country, 20)) %>% 
-   ggplot(aes(Country)) +
+   drop_na(EdLevel) %>% 
+   mutate(EdLevel = fct_lump(EdLevel, 4)) %>% 
+   ggplot(aes(EdLevel)) +
    geom_bar() +
    coord_flip()
 
 df %>% 
-   drop_na(Country) %>% 
-   mutate(Country = fct_lump(Country, 20)) %>% 
-   ggplot(aes(Country)) +
+   drop_na(EdLevel) %>% 
+   mutate(EdLevel = fct_lump(EdLevel, 4)) %>% 
+   ggplot(aes(EdLevel)) +
    geom_bar() +
    coord_flip() +
    labs(title = "Survey respondents",
@@ -208,10 +211,10 @@ df %>%
         y = "Respondents")
 
 df %>% 
-   drop_na(Country) %>% 
-   mutate(Country = fct_lump(Country, 20),
-          Country = fct_infreq(Country)) %>% 
-   ggplot(aes(Country)) +
+   drop_na(EdLevel) %>% 
+   mutate(EdLevel = fct_lump(EdLevel, 4),
+          EdLevel = fct_infreq(EdLevel)) %>% 
+   ggplot(aes(EdLevel)) +
    geom_bar() +
    coord_flip() +
    labs(title = "Survey respondents",
@@ -219,13 +222,26 @@ df %>%
         y = "Respondents")
 
 df %>% 
-   drop_na(Country) %>% 
-   mutate(Country = fct_lump(Country, 20),
-          Country = fct_infreq(Country)) %>% 
-   ggplot(aes(Country)) +
-   geom_bar() +
+   drop_na(EdLevel) %>% 
+   mutate(EdLevel = fct_lump(EdLevel, 4),
+          EdLevel = fct_infreq(EdLevel)) %>% 
+   ggplot(aes(EdLevel)) +
+   geom_bar(fill = "#75ab42") +
    coord_flip() +
-   labs(title = "Survey respondents country",
+   labs(title = "Survey respondents education",
+        x = "",
+        y = "Respondents") +
+   theme_light()
+
+df %>% 
+   drop_na(EdLevel) %>% 
+   mutate(EdLevel = fct_lump(EdLevel, 4),
+          EdLevel = str_wrap(EdLevel, width = 60),
+          EdLevel = fct_infreq(EdLevel)) %>% 
+   ggplot(aes(EdLevel)) +
+   geom_bar(fill = "#75ab42") +
+   coord_flip() +
+   labs(title = "Survey respondents education",
         x = "",
         y = "Respondents") +
    theme_light()
@@ -255,15 +271,55 @@ plot_function("WorkLoc")
 ```
 
 
+## Models
+
+Very quickly!
+
+```{r models}
+x = df %>% 
+   mutate(YearsCode = as.numeric(YearsCode)) %>% 
+   select(YearsCode, CompTotal, CompFreq) %>% 
+   filter(CompFreq == "Yearly") %>% 
+   drop_na()
+
+par(mfrow = c(2, 2))
+lm(CompTotal ~ YearsCode, data = x) %>% 
+   plot()
+par(mfrow = c(1, 1))
+
+ggplot(x, aes(YearsCode, CompTotal)) +
+   geom_point() +
+   stat_smooth(method = "lm") +
+   coord_cartesian(ylim = c(0, 150000))
+```
+
+
+
 ## Question
 
 Here we can put it all together, with a little more magic to establish a question.
 
 ```{r question, fig.width=10, fig.height=8}
+# Split out languages worked with
+x = df %>% 
+   select(Respondent, LanguageWorkedWith)
+
+# Make Languages into a tidy column
+x = lapply(1:nrow(x), function(i){
+   y = str_split(x[i, 2], ";") %>% 
+      unlist()
+   tibble(Respondent = x$Respondent[i],
+          Languages = y)
+})
+
+# Convert list into a data frame (tibble)
+x = do.call("rbind.data.frame", x) %>% 
+   filter(Languages == "R")
+
 df %>% 
-   filter(str_detect(LanguageWorkedWith, ";R;")) %>% 
+   inner_join(x) %>% 
    mutate(EdLevel = replace_na(EdLevel, "Unanswered"),
-          EdLevel = str_wrap(EdLevel, width=60),
+          EdLevel = str_wrap(EdLevel, width=40),
           EdLevel = fct_infreq(EdLevel)) %>% 
    ggplot(aes(EdLevel)) +
    geom_bar() +
@@ -278,7 +334,7 @@ df %>%
    facet_wrap(~str_wrap(MainBranch, width=40))
 ```
 
-* Popular with hobby students
-* Popular with researchers - probably!
+### Your task
 
-**Q:** Can you explore the last statement?
+**R looks popular with researchers, can you explore this and visualise an argument?**
+
