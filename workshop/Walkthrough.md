@@ -52,6 +52,7 @@ Stackoverflow. You can download it from
 ## Packages
 
 ``` r
+#install.packages("tidyverse")
 library(tidyverse)
 ```
 
@@ -1073,3 +1074,5 @@ df %>%
 
 **R looks popular with researchers, can you explore this and visualise
 an argument?**
+
+# Use the export button on files to get your script.
