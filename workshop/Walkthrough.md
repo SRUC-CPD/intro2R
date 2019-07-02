@@ -963,6 +963,29 @@ df %>%
 
 ![](Walkthrough_files/figure-gfm/ggplot-7.png)<!-- -->
 
+## Colour
+
+Try out <http://colorbrewer2.org/> to find suitable palettes.
+
+``` r
+df %>% 
+   drop_na(EdLevel, WorkLoc) %>% 
+   mutate(EdLevel = fct_lump(EdLevel, 4),
+          EdLevel = str_wrap(EdLevel, width = 40),
+          EdLevel = fct_infreq(EdLevel)) %>% 
+   ggplot(aes(EdLevel, fill = str_wrap(WorkLoc, width = 20))) +
+   geom_bar() +
+   scale_fill_brewer(type = "qual", palette = "Dark2") +
+   coord_flip() +
+   labs(title = "Survey respondents education",
+        x = "",
+        y = "Respondents",
+        fill = "") +
+   theme_light()
+```
+
+![](Walkthrough_files/figure-gfm/colours-1.png)<!-- -->
+
 ## Functions
 
 ``` r
