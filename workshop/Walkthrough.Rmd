@@ -28,6 +28,8 @@ You can download it from <https://insights.stackoverflow.com/survey>.
 * `?Function`
 * <http://edinbr.org/> your local user group
 * <https://ourcodingclub.github.io/> coding club
+* <http://www.bioss.ac.uk/training.html> BIOSS training courses
+* <https://twitter.com/hashtag/rstats> on twitter!
 * <https://www.tidyverse.org/> help guides
 * <http://swcarpentry.github.io/r-novice-inflammation>
 * <https://datacarpentry.org/R-ecology-lesson/> or <https://datacarpentry.org/r-socialsci/>
@@ -311,6 +313,8 @@ x = lapply(1:nrow(x), function(i){
    tibble(Respondent = x$Respondent[i],
           Languages = y)
 })
+
+# See also unnest_tokens
 
 # Convert list into a data frame (tibble)
 x = do.call("rbind.data.frame", x) %>% 
