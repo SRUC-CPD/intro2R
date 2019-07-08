@@ -48,6 +48,19 @@ Broadly follow software carpentry's: <https://docs.carpentries.org/topic_folders
 - `<-` and `=` can generally be used 
 
 
+## What this isn't
+
+- Comprehensive guide to R
+- How to do statistics
+
+
+## What this is
+
+- Get you working with data as quickly as possible
+- Know how to help yourself
+- Help you feel comfortable exploring
+
+
 ## Let's get started!
 
 - All course materials are on our webpage: <http://bit.ly/intro_to_R>.

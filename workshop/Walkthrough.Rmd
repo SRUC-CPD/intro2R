@@ -28,6 +28,8 @@ You can download it from <https://insights.stackoverflow.com/survey>.
 * `?Function`
 * <http://edinbr.org/> your local user group
 * <https://ourcodingclub.github.io/> coding club
+* <http://www.bioss.ac.uk/training.html> BIOSS training courses
+* <https://twitter.com/hashtag/rstats> on twitter!
 * <https://www.tidyverse.org/> help guides
 * <http://swcarpentry.github.io/r-novice-inflammation>
 * <https://datacarpentry.org/R-ecology-lesson/> or <https://datacarpentry.org/r-socialsci/>
@@ -249,6 +251,28 @@ df %>%
 ```
 
 
+## Colour
+
+Try out <http://colorbrewer2.org/> to find suitable palettes.
+
+```{r colours}
+df %>% 
+   drop_na(EdLevel, WorkLoc) %>% 
+   mutate(EdLevel = fct_lump(EdLevel, 4),
+          EdLevel = str_wrap(EdLevel, width = 40),
+          EdLevel = fct_infreq(EdLevel)) %>% 
+   ggplot(aes(EdLevel, fill = str_wrap(WorkLoc, width = 20))) +
+   geom_bar() +
+   scale_fill_brewer(type = "qual", palette = "Dark2") +
+   coord_flip() +
+   labs(title = "Survey respondents education",
+        x = "",
+        y = "Respondents",
+        fill = "") +
+   theme_light()
+```
+
+
 ## Functions
 
 ```{r function}
@@ -313,6 +337,8 @@ x = lapply(1:nrow(x), function(i){
           Languages = y)
 })
 
+# See also unnest_tokens
+
 # Convert list into a data frame (tibble)
 x = do.call("rbind.data.frame", x) %>% 
    filter(Languages == "R")
@@ -338,6 +364,12 @@ df %>%
 ### Your task
 
 **R looks popular with researchers, can you explore this and visualise an argument?**
+   
 
+<<<<<<< HEAD
 
 # Use the export button on files to get your script.
+=======
+[![Creative Commons License](https://i.creativecommons.org/l/by/4.0/88x31.png)](http://creativecommons.org/licenses/by/4.0/)
+This work is licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/).
+>>>>>>> d117268ad4a85c6ba6f0ac2afcf5ea85a7258f95
