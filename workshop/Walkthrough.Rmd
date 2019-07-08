@@ -319,10 +319,16 @@ ggplot(x, aes(YearsCode, CompTotal)) +
 ```
 
 
-
 ## Question
 
-Here we can put it all together, with a little more magic to establish a question.
+**Use your new skills to create a plot or table of something in the survey.**
+
+**Use the export button on files to get your script.**
+
+
+## Advanced
+
+Here we can put it all together, with a little more magic to establish a research question.
 
 ```{r question, fig.width=10, fig.height=8}
 # Split out languages worked with
@@ -361,13 +367,14 @@ df %>%
    facet_wrap(~str_wrap(MainBranch, width=40))
 ```
 
-### Your task
+R looks like it could be popular with researchers (all those people writing code who don't consider themselves developers), can we explore this and visualise an argument?
 
-**R looks popular with researchers, can you explore this and visualise an argument?**
-   
+```{r answer}
+
+```
 
 
-# Use the export button on files to get your script.
+
 
 [![Creative Commons License](https://i.creativecommons.org/l/by/4.0/88x31.png)](http://creativecommons.org/licenses/by/4.0/)
 This work is licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/).
