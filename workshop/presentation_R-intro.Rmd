@@ -39,6 +39,8 @@ Broadly follow software carpentry's: <https://docs.carpentries.org/topic_folders
 - Packages are add ons to increase functionality
 - Today we'll use
     - tidyverse: <https://www.tidyverse.org/>
+    - Analysis orientated package
+    - Much easier to QA than a spreadsheet
 
 
 ## R signposts
