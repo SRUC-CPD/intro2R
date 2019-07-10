@@ -75,6 +75,11 @@ library(tidyverse)
     ## ✖ dplyr::filter() masks stats::filter()
     ## ✖ dplyr::lag()    masks stats::lag()
 
+``` r
+# For unnesting strings
+library(tidytext)
+```
+
 ## Data
 
 ### Read
@@ -1053,30 +1058,23 @@ ggplot(x, aes(YearsCode, CompTotal)) +
 
 ## Question
 
+**Use your new skills to create a plot or table of something in the
+survey.**
+
+**Use the export button on files to get your script.**
+
+## Advanced
+
 Here we can put it all together, with a little more magic to establish a
-question.
+research question.
 
 ``` r
-# Split out languages worked with
-x = df %>% 
-   select(Respondent, LanguageWorkedWith)
-
 # Make Languages into a tidy column
-x = lapply(1:nrow(x), function(i){
-   y = str_split(x[i, 2], ";") %>% 
-      unlist()
-   tibble(Respondent = x$Respondent[i],
-          Languages = y)
-})
-
-# See also unnest_tokens
-
-# Convert list into a data frame (tibble)
-x = do.call("rbind.data.frame", x) %>% 
-   filter(Languages == "R")
-
 df %>% 
-   inner_join(x) %>% 
+   unnest_tokens(LanguageWorkedWith,
+                LanguageWorkedWith,
+                token = stringr::str_split, pattern = ";",
+                to_lower = F) %>% 
    mutate(EdLevel = replace_na(EdLevel, "Unanswered"),
           EdLevel = str_wrap(EdLevel, width=40),
           EdLevel = fct_infreq(EdLevel)) %>% 
@@ -1093,13 +1091,16 @@ df %>%
    facet_wrap(~str_wrap(MainBranch, width=40))
 ```
 
-    ## Joining, by = "Respondent"
-
 ![](Walkthrough_files/figure-gfm/question-1.png)<!-- -->
 
-### Your task
+R looks like it could be popular with researchers (all those people
+writing code who don’t consider themselves developers), can we explore
+this and visualise an argument?
 
-**R looks popular with researchers, can you explore this and visualise
-an argument?**
+The answer probably lies in counting the job types in each of the
+MainBranch sets to see if there is a difference.
 
-# Use the export button on files to get your script.
+[![Creative Commons
+License](https://i.creativecommons.org/l/by/4.0/88x31.png)](http://creativecommons.org/licenses/by/4.0/)
+This work is licensed under a [Creative Commons Attribution 4.0
+International License](http://creativecommons.org/licenses/by/4.0/).

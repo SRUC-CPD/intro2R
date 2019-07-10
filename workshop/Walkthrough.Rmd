@@ -5,6 +5,8 @@ date: "2nd July 2019"
 output: 
   github_document: 
     toc: true
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r setup, include=FALSE}
@@ -57,6 +59,8 @@ You can download it from <https://insights.stackoverflow.com/survey>.
 ```{r packages}
 #install.packages("tidyverse")
 library(tidyverse)
+# For unnesting strings
+library(tidytext)
 ```
 
 
@@ -331,26 +335,12 @@ ggplot(x, aes(YearsCode, CompTotal)) +
 Here we can put it all together, with a little more magic to establish a research question.
 
 ```{r question, fig.width=10, fig.height=8}
-# Split out languages worked with
-x = df %>% 
-   select(Respondent, LanguageWorkedWith)
-
 # Make Languages into a tidy column
-x = lapply(1:nrow(x), function(i){
-   y = str_split(x[i, 2], ";") %>% 
-      unlist()
-   tibble(Respondent = x$Respondent[i],
-          Languages = y)
-})
-
-# See also unnest_tokens
-
-# Convert list into a data frame (tibble)
-x = do.call("rbind.data.frame", x) %>% 
-   filter(Languages == "R")
-
 df %>% 
-   inner_join(x) %>% 
+   unnest_tokens(LanguageWorkedWith,
+                LanguageWorkedWith,
+                token = stringr::str_split, pattern = ";",
+                to_lower = F) %>% 
    mutate(EdLevel = replace_na(EdLevel, "Unanswered"),
           EdLevel = str_wrap(EdLevel, width=40),
           EdLevel = fct_infreq(EdLevel)) %>% 
@@ -369,11 +359,7 @@ df %>%
 
 R looks like it could be popular with researchers (all those people writing code who don't consider themselves developers), can we explore this and visualise an argument?
 
-```{r answer}
-
-```
-
-
+The answer probably lies in counting the job types in each of the MainBranch sets to see if there is a difference.
 
 
 [![Creative Commons License](https://i.creativecommons.org/l/by/4.0/88x31.png)](http://creativecommons.org/licenses/by/4.0/)
