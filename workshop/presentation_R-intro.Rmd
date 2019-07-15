@@ -61,6 +61,7 @@ Broadly follow software carpentry's: <https://docs.carpentries.org/topic_folders
 - Get you working with data as quickly as possible
 - Know how to help yourself
 - Help you feel comfortable exploring
+- Learn how to make tables and plots
 
 
 ## Let's get started!
